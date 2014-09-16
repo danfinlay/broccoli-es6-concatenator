@@ -74,7 +74,8 @@ ES6Concatenator.prototype.write = function (readTree, destDir) {
 
     function addModule (moduleName) {
       if (modulesAdded[moduleName]) return
-      if (self.ignoredModules && self.ignoredModules[moduleName]) return
+      if ((self.ignoredModules && self.ignoredModules[moduleName]) ||
+           moduleName.indexOf('npm:') === 0 ) return
       var i
       var modulePath = moduleName + '.js'
       var fullPath = srcDir + '/' + modulePath
